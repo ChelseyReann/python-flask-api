@@ -14,12 +14,13 @@ class Song(BaseModel):
     album = CharField()
     
 db.connect()
-db.drop_tables([Song])
-db.create_tables([Song])
+# db.drop_tables([Song])
+# db.create_tables([Song])
 
-Song(title='Seek Bromance', artist ='Avicii', album='Seek Bromance').save()
-Song(title='Wildest Dreams', artist ='Taylor Swift', album=1989).save()
-Song(title='VPN', artist ='Lil Ugly Mane', album='Volanic Bird Enemy').save()
+# Song(title='Seek Bromance', artist ='Avicii', album='Seek Bromance').save()
+# Song(title='Wildest Dreams', artist ='Taylor Swift', album=1989).save()
+# Song(title='VPN', artist ='Lil Ugly Mane', album='Volanic Bird Enemy').save()
+# Song(title= "Nobody Gets Me", artist= "SZA", album= "SOS").save()
 
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ def endpoint(id=None):
     if request.method == 'PUT':
         body = request.get_json()
         Song.update(body).where(Song.id == id).execute()
-        return 'Song ' +str(id) + ' has been updated.'
+        return f'Song {id}  has been updated.'
     
     if request.method == 'POST':
         new_song = dict_to_model(Song, request.get_json())
@@ -47,7 +48,7 @@ def endpoint(id=None):
     
     if request.method == 'DELETE':
         Song.delete().where(Song.id == id).execute()
-        return 'Song ' + str(id) + " has been deleted."
+        return f"Song {id} has been deleted."
     
 app.run(debug=True, port=9000)
     
