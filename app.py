@@ -8,18 +8,18 @@ class BaseModel(Model):
   class Meta:
     database = db
     
-class Playlist(BaseModel):
+class Song(BaseModel):
     title = CharField()
     artist = CharField()
     album = CharField()
     
 db.connect()
-db.drop_tables([Playlist])
-db.create_tables([Playlist])
+db.drop_tables([Song])
+db.create_tables([Song])
 
-Playlist(title='Seek Bromance', artist ='Avicii', album='Seek Bromance').save()
-Playlist(title='Wildest Dreams', artist ='Taylor Swift', album=1989).save()
-Playlist(title='VPN', artist ='Lil Ugly Mane', album='Volanic Bird Enemy').save()
+Song(title='Seek Bromance', artist ='Avicii', album='Seek Bromance').save()
+Song(title='Wildest Dreams', artist ='Taylor Swift', album=1989).save()
+Song(title='VPN', artist ='Lil Ugly Mane', album='Volanic Bird Enemy').save()
 
 app = Flask(__name__)
 
@@ -28,26 +28,26 @@ app = Flask(__name__)
 def endpoint(id=None):
     if request.method == 'GET':
         if id:
-            return jsonify(model_to_dict(Playlist.get(Playlist.id == id)))
+            return jsonify(model_to_dict(Song.get(Song.id == id)))
         else:
-            playlist_list = []
-            for playlist in Playlist.select():
-                playlist_list.append(model_to_dict(playlist))
-            return jsonify(playlist_list)
+            song_list = []
+            for song in Song.select():
+                song_list.append(model_to_dict(song))
+            return jsonify(song_list)
     
     if request.method == 'PUT':
         body = request.get_json()
-        Playlist.update(body).where(Playlist.id == id).execute()
-        return 'Playlist ' +str(id) + ' has been updated.'
+        Song.update(body).where(Song.id == id).execute()
+        return 'Song ' +str(id) + ' has been updated.'
     
     if request.method == 'POST':
-        new_song = dict_to_model(Playlist, request.get_json())
+        new_song = dict_to_model(Song, request.get_json())
         new_song.save()
         return jsonify({"success": True})
     
     if request.method == 'DELETE':
-        Playlist.delete().where(Playlist.id == id).execute()
-        return 'Playlist ' + str(id) + " deleted."
+        Song.delete().where(Song.id == id).execute()
+        return 'Song ' + str(id) + " has been deleted."
     
 app.run(debug=True, port=9000)
     
