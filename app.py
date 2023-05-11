@@ -36,4 +36,6 @@ def endpoint(id=None):
             return jsonify(playlist_list)
     
     if request.method == 'PUT':
-        
+        body = request.get_json()
+        Playlist.update(body).where(Playlist.id == id).execute()
+        return 'Playlist ' +str(id) + ' has been updated.'
