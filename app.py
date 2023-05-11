@@ -39,3 +39,10 @@ def endpoint(id=None):
         body = request.get_json()
         Playlist.update(body).where(Playlist.id == id).execute()
         return 'Playlist ' +str(id) + ' has been updated.'
+    
+    if request.method == 'POST':
+        new_song = dict_to_model(Playlist, request.get_json())
+        new_song.save()
+        return jsonify({"success": True})
+    
+    
