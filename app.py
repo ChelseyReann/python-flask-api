@@ -45,4 +45,9 @@ def endpoint(id=None):
         new_song.save()
         return jsonify({"success": True})
     
+    if request.method == 'DELETE':
+        Playlist.delete().where(Playlist.id == id).execute()
+        return 'Playlist ' + str(id) + " deleted."
+    
+app.run(debug=True, port=9000)
     
