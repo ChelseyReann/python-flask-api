@@ -51,14 +51,20 @@ In order to create a song you have to do the following:
 
 ### Read
 ---
-If you go to the below endpoint in your browser or Postman by using a GET request:
-```
-http://127.0.0.1:9000/playlist
-```
-you'll be able to view(or read) all of the items that are in the API.
+Access the same endpoint as above in your browser or Postman by using a GET request.
+
+You'll be able to view (or read) all of the items that are in the API.
 
 ### Update
 ---
+To update a song, make sure you've selected the PUT HTTP verb and that you type in the above endpoint in Postman followed by the id of the song that you would like to update. See below for an example:
+```
+http://127.0.0.1:9000/playlist/1
+```
+
+The "/1" that is added to the endpoint lets the API know that you want to update the first song in the database. 
+
+
 
 ### Delete
 ---
