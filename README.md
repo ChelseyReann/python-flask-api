@@ -57,17 +57,30 @@ You'll be able to view (or read) all of the items that are in the API.
 
 ### Update
 ---
-To update a song, make sure you've selected the PUT HTTP verb and that you type in the above endpoint in Postman followed by the id of the song that you would like to update. See below for an example:
+To update a song, make sure you've selected PUT as the HTTP verb and that you type in the above endpoint in Postman followed by the id of the song that you would like to update. See below for an example:
 ```
 http://127.0.0.1:9000/playlist/1
 ```
 
 The "/1" that is added to the endpoint lets the API know that you want to update the first song in the database. 
 
-
+Once that endpoint is accessed in Postman follow the below steps:
+- Make sure you have "PUT" selected as your HTTP verb
+- Click on the "Body" option, followed by the "raw" option and then choose "JSON" as the format.
+- Input only the field that you wish to change so if you need to update the song title, only include the "title" part of the Song schema into the Body to be updated.
 
 ### Delete
 ---
+Deleting a song works very similarly to updating a song. Make sure you've selected DELETE as the HTTP verb and that you type in the same general endpoint in Postman followed by the id of the song that you would like to delete. See below for an example:
+```
+http://127.0.0.1:9000/playlist/1
+```
+
+The "/1" that is added to the endpoint lets the API know that you want to delete the first song in the database. 
+
+Once that endpoint is accessed in Postman follow the below steps:
+- Make sure you have "DELETE" selected as your HTTP verb
+- And that's it the song is deleted!
 
 ## Resources
 - [Peewee](https://docs.peewee-orm.com/en/latest/)
